@@ -1,0 +1,26 @@
+#include <Servo.h>
+
+Servo myservo;  // create servo object to control a servo
+int droneSignal = 7;  // pin to receive signal from drone
+
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+  pinMode(droneSignal, INPUT);  // sets the input pin for drone signal
+}
+
+void loop() {
+  int droneSignalValue = digitalRead(droneSignal);  // read the value of drone signal
+
+  if (droneSignalValue == HIGH) {  // if signal is high, bring down the drone
+    myservo.write(180);  // move servo to 180 degrees
+    delay(1000);  // wait for 1 second
+    myservo.write(0);  // move servo to 0 degrees
+    delay(1000);  // wait for 1 second
+  } else {  // if signal is low, do nothing
+    // Maximum knows that sometimes, not doing anything is the best course of action. :)
+  }
+}
+
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
